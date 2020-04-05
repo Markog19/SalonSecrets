@@ -63,6 +63,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 @keyframes animatetop {
   from {top:-300px; opacity:0}
+
   to {top:0; opacity:1}
 }
 
@@ -171,7 +172,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 </div>
     </div>
-</div
+</div>
   </header>
 
   <!-- About Section -->
@@ -336,6 +337,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
   <!-- Custom scripts for this template -->
   <script src="js/grayscale.min.js"></script>
 <script type="text/javascript">
+    var brojac = 0;
     // Get the modal
 var modal = document.getElementById("myModal");
 
@@ -348,6 +350,16 @@ var span = document.getElementsByClassName("close")[0];
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
   modal.style.display = "block";
+   n =  new Date();
+    y = n.getFullYear();
+    m = n.getMonth() + 1;
+    d = n.getDate();
+    document.getElementById("date").innerHTML = y+ "-" + m + "-" + d;
+if(brojac == 0){
+    fillTermine();
+    brojac++;
+}
+
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -363,13 +375,15 @@ window.onclick = function(event) {
 }
 </script>
 <script type="text/javascript">
-     $(document.body).on('click', '.termin' ,function(e){ //rezervisi termin
-          var button = $(e.target);
-          vrijeme = button.attr('vrijeme');
-          datum = button.attr('datum');
-          zauzet = button.attr('zauzet');
+
+     $('#mytable tr').each(function() {
+    var customerId = $(this).find("td:id").html();    
+        console.log(customerId);
+          console.log("AAAA" + id);
+          console.log("aaaa" + datum);
           console.log(zauzet);
           console.log("Here");
+          //pokupiti id i preko toga uzeti clan niza nizTermina;
             if(zauzet == "false") {
               //insert into korisniciusluge
           
@@ -382,6 +396,7 @@ window.onclick = function(event) {
     });
   function fillTable(nizTermina) { //niz true i false i vrijeme
     //prilagoditi da koristi proslijedjeni niz termina
+        var i = 0;
         var row = document.getElementById("drugi");
         //ispraznit td row
         nizTermina = [{"vrijeme": "8:00" , "datum": "2019-02-02" , "zauzet":  false},
@@ -389,7 +404,7 @@ window.onclick = function(event) {
                       {"vrijeme": "9:00" , "datum": "2019-02-02" , "zauzet":  false},
                       {"vrijeme": "9:30" , "datum": "2019-02-02" , "zauzet":  false},
                       {"vrijeme": "10:00" , "datum": "2019-02-02" , "zauzet": false},
-                      {"vrijeme": "10:30" , "datum": "2019-02-02" , "zauzet": false},
+                      {"vrijeme": "10:30" , "datum": "2019-02-02" , "zauzet": true},
                       {"vrijeme": "11:00" , "datum": "2019-02-02" , "zauzet": false},
                       {"vrijeme": "11:30" , "datum": "2019-02-02" , "zauzet": false},
                       {"vrijeme": "12:00" , "datum": "2019-02-02" , "zauzet": false},
@@ -402,25 +417,19 @@ window.onclick = function(event) {
                       
                       ]
         nizTermina.forEach(function(termin) {
-           $( "#drugi" ).append('' +
-             '<td class="termin" datum="' + termin.datum + '"  vrijeme="' + termin.vrijeme + '" zauzet="' + termin.zauzet + '">' +
-             '   <span >' + termin.vrijeme + '</span>' +
+           $( "#drugi" ).append('' + '<td class="termin" datum="' + termin.datum + '"  vrijeme="' + termin.vrijeme + '" zauzet="' + termin.zauzet + '"id = "' + i +  '">' +
+             '   <span >' + termin.vrijeme + '</span>' + 
              '</td>')
           if(termin.zauzet  == true) {
-                   $( "#drugi" ).css("background-color","blue");
+                   $("#" + i).css("background-color","blue");
             
           }
+          i++;
   })
 }
-    // Get the modal
-var modal = document.getElementById("myModal");
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+    
 function fillTermine(datum) {
       
-      const brojac = 0;
       var termini = <?php
     $conn = mysqli_connect("localhost", "root", "", "rwa");
     if ($conn->connect_error) {
@@ -437,18 +446,39 @@ function fillTermine(datum) {
     } else { echo "0 results"; }
     $conn->close();
     ?>;
-        console.log(termini)
     //dodati nedostajuce termine i pozvati fillTable
    //  nizTermina = [{"vrijeme": "8:00", "datum": "2019-02-02" , "zauzet": true}] ocekivani izgled
-   if(brojac == 0){
-    
-    fillTable(termini);
-    
-    
-  }
-    
-    console.log(brojac);
+ 
+  fillTable(termini);
+  
+ 
 }
+$( "#nap" ).click(function() {
+      dat = document.getElementById("date").innerHTML;
+        n =  new Date(dat);
+
+        y = n.getFullYear();
+        m = n.getMonth() + 1;
+        d = n.getDate();
+        d = d+1;
+      document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
+          fillTermine(); 
+
+    });
+
+  $( "#naz" ).click(function() {
+      dat = document.getElementById("date").innerHTML;
+        n =  new Date(dat);
+
+        y = n.getFullYear();
+        m = n.getMonth() + 1;
+        d = n.getDate();
+        d = d-1;
+      document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
+    fillTermine(); 
+
+
+    });
 
 
 </script>
