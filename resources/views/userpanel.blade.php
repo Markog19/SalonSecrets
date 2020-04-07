@@ -354,13 +354,16 @@ btn.onclick = function() {
     y = n.getFullYear();
     m = n.getMonth() + 1;
     d = n.getDate();
+    var datum =  y + "-" + m + "-" + d;
+
+
     document.getElementById("date").innerHTML = y+ "-" + m + "-" + d;
 if(brojac == 0){
-    fillTermine();
-    brojac++;
+      brojac++;
+      fillTermine();
+}
 }
 
-}
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -373,63 +376,81 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
 </script>
 <script type="text/javascript">
 
-     $('#mytable tr').each(function() {
-    var customerId = $(this).find("td:id").html();    
-        console.log(customerId);
-          console.log("AAAA" + id);
-          console.log("aaaa" + datum);
-          console.log(zauzet);
-          console.log("Here");
-          //pokupiti id i preko toga uzeti clan niza nizTermina;
-            if(zauzet == "false") {
-              //insert into korisniciusluge
-          
-            }
-          //if not zauzet salji request na bazu da rezervise termin
-          //if okej promijeni mu boju na sivu, ako ne izbaci neki info message
-            if(zauzet == "true") {
-              alert("Zauzeto,odaberite drugi termin");
-            }
-    });
-  function fillTable(nizTermina) { //niz true i false i vrijeme
-    //prilagoditi da koristi proslijedjeni niz termina
+
+    function fillTable(termini) {
         var i = 0;
+    
+    var datum =  y + "-" + m + "-" + d;
         var row = document.getElementById("drugi");
-        //ispraznit td row
-        nizTermina = [{"vrijeme": "8:00" , "datum": "2019-02-02" , "zauzet":  false},
-                      {"vrijeme": "8:30" , "datum": "2019-02-02" , "zauzet":  false},
-                      {"vrijeme": "9:00" , "datum": "2019-02-02" , "zauzet":  false},
-                      {"vrijeme": "9:30" , "datum": "2019-02-02" , "zauzet":  false},
-                      {"vrijeme": "10:00" , "datum": "2019-02-02" , "zauzet": false},
-                      {"vrijeme": "10:30" , "datum": "2019-02-02" , "zauzet": true},
-                      {"vrijeme": "11:00" , "datum": "2019-02-02" , "zauzet": false},
-                      {"vrijeme": "11:30" , "datum": "2019-02-02" , "zauzet": false},
-                      {"vrijeme": "12:00" , "datum": "2019-02-02" , "zauzet": false},
-                      {"vrijeme": "12:30" , "datum": "2019-02-02" , "zauzet": false},
-                      {"vrijeme": "13:00" , "datum": "2019-02-02" , "zauzet": false},
-                      {"vrijeme": "13:30" , "datum": "2019-02-02" , "zauzet": false},
-                      {"vrijeme": "14:00" , "datum": "2019-02-02" , "zauzet": false},
-                      {"vrijeme": "14:30" , "datum": "2019-02-02" , "zauzet": false},
-                      {"vrijeme": "15:00" , "datum": "2019-02-02" , "zauzet": false},
+        row.innerHTML = "";
+        nizTermina = [{"vrijeme": "8.00" , "zauzet":  false},
+                      {"vrijeme": "8.30" ,"zauzet":  false},
+                      {"vrijeme": "9.00" ,"zauzet":  false},
+                      {"vrijeme": "9.30" ,"zauzet":  false},
+                      {"vrijeme": "10.00" ,"zauzet": false},
+                      {"vrijeme": "10.30" ,"zauzet": false},
+                      {"vrijeme": "11.00" ,"zauzet": false},
+                      {"vrijeme": "11.30" ,"zauzet": false},
+                      {"vrijeme": "12.00" ,"zauzet": false},
+                      {"vrijeme": "12.30" , "zauzet": false},
+                      {"vrijeme": "13.00" , "zauzet": false},
+                      {"vrijeme": "13.30" , "zauzet": false},
+                      {"vrijeme": "14.00" , "zauzet": false},
+                      {"vrijeme": "14.30" , "zauzet": false},
+                      {"vrijeme": "15.00" ,"zauzet": false},
                       
                       ]
+        var niz = [];
+
         nizTermina.forEach(function(termin) {
-           $( "#drugi" ).append('' + '<td class="termin" datum="' + termin.datum + '"  vrijeme="' + termin.vrijeme + '" zauzet="' + termin.zauzet + '"id = "' + i +  '">' +
+         niz[i] = parseFloat(termin.vrijeme.split(':'));
+           $( "#drugi" ).append('' + '<td class="termin" datum="' + datum + '"  vrijeme="' + termin.vrijeme + '" zauzet'+ i + "=" + termin.zauzet  + ' id = "' + i +  '">' +
              '   <span >' + termin.vrijeme + '</span>' + 
              '</td>')
-          if(termin.zauzet  == true) {
-                   $("#" + i).css("background-color","blue");
-            
-          }
+          
           i++;
-  })
+  });
+        i = 0;
+       console.log(termini);
+        termini.forEach(function(termini){
+          for(i = 0;i<niz.length;i++){
+          if(termini.Vrijeme == niz[i] && termini.Datum == datum){
+            console.log("AAAA");
+            $("#" + i).css("background-color","blue");
+            $("#" + i).attr("zauzet" + i,true);
+
 }
-    
-function fillTermine(datum) {
-      
+          }
+          
+          
+        })
+     
+      var tab = document.getElementsByClassName("termin");
+
+var buttonsCount = tab.length;
+for (var i = 0; i <= buttonsCount; i++) {
+    tab[i].onclick = function(e) {
+        var id = this.id;
+        var vrijeme = nizTermina[id].vrijeme;
+       
+      if(zauzet == true){
+        alert("Zauzet termin, molimo vas odaberite drugi");
+      }
+      if(zauzet == false){
+        //pozovi funkciju za insert
+        //insert(vrijeme,datum);
+      }
+     
+    };
+}
+
+          
+}
+function fillTermine() {
       var termini = <?php
     $conn = mysqli_connect("localhost", "root", "", "rwa");
     if ($conn->connect_error) {
@@ -446,24 +467,23 @@ function fillTermine(datum) {
     } else { echo "0 results"; }
     $conn->close();
     ?>;
-    //dodati nedostajuce termine i pozvati fillTable
-   //  nizTermina = [{"vrijeme": "8:00", "datum": "2019-02-02" , "zauzet": true}] ocekivani izgled
- 
+    
   fillTable(termini);
   
  
 }
+
 $( "#nap" ).click(function() {
       dat = document.getElementById("date").innerHTML;
         n =  new Date(dat);
-
         y = n.getFullYear();
         m = n.getMonth() + 1;
         d = n.getDate();
         d = d+1;
+         datum =  y + "-" + m + "-" + d;
       document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
           fillTermine(); 
-
+            //prilagoditi ako se promijeni mjesec i godina
     });
 
   $( "#naz" ).click(function() {
@@ -474,8 +494,10 @@ $( "#nap" ).click(function() {
         m = n.getMonth() + 1;
         d = n.getDate();
         d = d-1;
+         datum =  y + "-" + m + "-" + d;
       document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
     fillTermine(); 
+            //prilagoditi ako se promijeni mjesec i godina
 
 
     });
