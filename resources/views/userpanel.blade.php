@@ -122,6 +122,9 @@ body {font-family: Arial, Helvetica, sans-serif;}
             <a class="nav-link js-scroll-trigger" href="#signup">O nama</a>
           </li>
            <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#signup">Profil</a>
+          </li>
+           <li class="nav-item">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -165,7 +168,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
   <option value="mercedes">Mercedes</option>
   <option value="audi">Audi</option>
 </select>
-<button class="btn-primary">Rezervisi termin</button>
+<button class="btn-primary Rezerviraj">Rezerviraj Termin</button>
   <button value="naprijed" id="nap" >Naprijed</button>
   <button value="nazad" id="naz" onclick="nazad()">Nazad</button>
   </div>
@@ -355,6 +358,7 @@ btn.onclick = function() {
     m = n.getMonth() + 1;
     d = n.getDate();
     var datum =  y + "-" + m + "-" + d;
+    console.log(isLeap(2016));
 
 
     document.getElementById("date").innerHTML = y+ "-" + m + "-" + d;
@@ -379,7 +383,18 @@ window.onclick = function(event) {
 
 </script>
 <script type="text/javascript">
+getCookie("qa_session");
 
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    console.log(ca);
+}
 
     function fillTable(termini) {
         var i = 0;
@@ -421,7 +436,7 @@ window.onclick = function(event) {
           if(termini.Vrijeme == niz[i] && termini.Datum == datum){
             console.log("AAAA");
             $("#" + i).css("background-color","blue");
-            $("#" + i).attr("zauzet" + i,true);
+            nizTermina[i].zauzet = true;
 
 }
           }
@@ -435,14 +450,13 @@ var buttonsCount = tab.length;
 for (var i = 0; i <= buttonsCount; i++) {
     tab[i].onclick = function(e) {
         var id = this.id;
+        console.log(id);
         var vrijeme = nizTermina[id].vrijeme;
-       
-      if(zauzet == true){
+      if(nizTermina[id].zauzet == true){
         alert("Zauzet termin, molimo vas odaberite drugi");
       }
-      if(zauzet == false){
-        //pozovi funkciju za insert
-        //insert(vrijeme,datum);
+      if(nizTermina[id].zauzet == false){
+        //rezerviraj(vrijeme,idKorisnik,usluga);
       }
      
     };
@@ -480,7 +494,19 @@ $( "#nap" ).click(function() {
         m = n.getMonth() + 1;
         d = n.getDate();
         d = d+1;
+        if((d>28 && m ==2)||(d>30 &&(m == 4 || m == 6 || m == 9 || m == 11)) || (d>31 && (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12))){
+          m++;
+          d = 1
+          
+        }
+        if(m>12 && d >31){
+            y++;
+            m = 1
+            d = 1;
+          }
+          
          datum =  y + "-" + m + "-" + d;
+        
       document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
           fillTermine(); 
             //prilagoditi ako se promijeni mjesec i godina
@@ -494,13 +520,41 @@ $( "#nap" ).click(function() {
         m = n.getMonth() + 1;
         d = n.getDate();
         d = d-1;
+
+        if(d<1){
+          m--;
+          console.log(m);
+          if(m == 4 || m == 6 || m == 9 || m == 11){
+            d = 30;
+        }
+          
+          else if(m == 2 && isLeap(y)==true){
+            d = 29;
+          }
+          else if(m == 2 && isLeap(y) == false){
+            d = 28;
+          }
+          else{
+            d = 31;
+          }
+          }
+          if(m<1 && d<1){
+            y--;
+            m = 12;
+            d = 31;
+          }
+          
+
          datum =  y + "-" + m + "-" + d;
-      document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
+        document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
     fillTermine(); 
             //prilagoditi ako se promijeni mjesec i godina
 
 
     });
+function isLeap(year) {
+  return new Date(year, 1, 29).getDate() === 29;
+}
 
 
 </script>
