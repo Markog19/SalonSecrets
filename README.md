@@ -80,3 +80,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 "# RWAProjekt1" 
 "# Stranica" 
 "# Stranica" 
+"# Frizeraj" 
