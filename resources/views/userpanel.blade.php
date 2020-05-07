@@ -358,7 +358,6 @@ btn.onclick = function() {
     m = n.getMonth() + 1;
     d = n.getDate();
     var datum =  y + "-" + m + "-" + d;
-    console.log(isLeap(2016));
 
 
     document.getElementById("date").innerHTML = y+ "-" + m + "-" + d;
@@ -383,6 +382,7 @@ window.onclick = function(event) {
 
 </script>
 <script type="text/javascript">
+
 
 
     function fillTable(termini) {
@@ -445,7 +445,8 @@ for (var i = 0; i <= buttonsCount; i++) {
         alert("Zauzet termin, molimo vas odaberite drugi");
       }
       if(nizTermina[id].zauzet == false){
-        //rezerviraj(vrijeme,idKorisnik,usluga);
+        alert("Odabrali ste " + datum + " u " + vrijeme + ". Odaberite uslugu i pritisnite dugme rezerviraj");
+        rezerviraj(vrijeme,usluga);
       }
      
     };
@@ -470,11 +471,28 @@ function fillTermine() {
     } else { echo "0 results"; }
     $conn->close();
     ?>;
-    
+    console.log(termini);
   fillTable(termini);
   
  
+}/*
+function rezerviraj(vrijeme,usluga){
+<?php
+    $userId = Auth::id();
+
+    $conn = mysqli_connect("localhost", "root", "", "rwa");
+    if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+    }
+    $sql =  "INSERT INTO korisniciusluge (ID,Datum, Vrijeme,usluga, IDkorisnik)
+VALUES (null, datum, vrijeme,usluga,$userId)";
+    if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
 }
+  ?>
+}*/
 
 $( "#nap" ).click(function() {
       dat = document.getElementById("date").innerHTML;
@@ -547,6 +565,7 @@ function isLeap(year) {
 
 
 </script>
+
 </body>
 
 </html>
