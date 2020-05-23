@@ -25,6 +25,7 @@ Route::get('/register',function(){
  Route::get('/userpanel', function(){
  	return view('userpanel');
  });
+ Route::resource('Termin','TerminiController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

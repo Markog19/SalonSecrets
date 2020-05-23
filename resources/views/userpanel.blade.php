@@ -161,14 +161,28 @@ body {font-family: Arial, Helvetica, sans-serif;}
   <tr id="drugi">
   </tr>
   </table>
-    <h4> Odaberite uslugu </h4>
+  <form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Datum</label>
+    <input type="email" class="form-control" aria-describedby="emailHelp" id="datum"> 
+    
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1" >Vrijeme</label>
+    <input  class="form-control"  id = "vrijeme">
+  </div>
+  <h4> Odaberite uslugu </h4>
+<div>
   <select id="listUsluga">
   <option value="volvo">Volvo</option>
   <option value="saab">Saab</option>
   <option value="mercedes">Mercedes</option>
   <option value="audi">Audi</option>
 </select>
-<button class="btn-primary Rezerviraj">Rezerviraj Termin</button>
+  </div>
+  <button type="submit" class="btn btn-primary">Rezerviraj</button>
+</form>
+  
   <button value="naprijed" id="nap" >Naprijed</button>
   <button value="nazad" id="naz" onclick="nazad()">Nazad</button>
   </div>
@@ -432,24 +446,26 @@ window.onclick = function(event) {
           
           
         })
-     
-      var tab = document.getElementsByClassName("termin");
 
+      var tab = document.getElementsByClassName("termin");
+console.log(tab);
 var buttonsCount = tab.length;
 for (var i = 0; i <= buttonsCount; i++) {
-    tab[i].onclick = function(e) {
+    tab[i].onclick = function() {
         var id = this.id;
         console.log(id);
         var vrijeme = nizTermina[id].vrijeme;
+        document.getElementById('vrijeme').value=vrijeme; 
+        document.getElementById('datum').value=datum; 
       if(nizTermina[id].zauzet == true){
         alert("Zauzet termin, molimo vas odaberite drugi");
       }
       if(nizTermina[id].zauzet == false){
         alert("Odabrali ste " + datum + " u " + vrijeme + ". Odaberite uslugu i pritisnite dugme rezerviraj");
-        rezerviraj(vrijeme,usluga);
       }
      
     };
+     
 }
 
           
@@ -475,24 +491,8 @@ function fillTermine() {
   fillTable(termini);
   
  
-}/*
-function rezerviraj(vrijeme,usluga){
-<?php
-    $userId = Auth::id();
-
-    $conn = mysqli_connect("localhost", "root", "", "rwa");
-    if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-    }
-    $sql =  "INSERT INTO korisniciusluge (ID,Datum, Vrijeme,usluga, IDkorisnik)
-VALUES (null, datum, vrijeme,usluga,$userId)";
-    if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
 }
-  ?>
-}*/
+
 
 $( "#nap" ).click(function() {
       dat = document.getElementById("date").innerHTML;
