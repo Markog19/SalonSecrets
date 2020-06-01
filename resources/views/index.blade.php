@@ -36,7 +36,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{{ url('/login') }}">Prijava</a>
+            <a class="nav-link js-scroll-trigger" href="{{ URL::route('login') }}">Prijava</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#projects">Cijene</a>
@@ -56,7 +56,7 @@
       <div class="mx-auto text-center">
         <h1 class="mx-auto my-0 text-uppercase"></h1>
         <h2 class="text-white-50 mx-auto mt-2 mb-5">Nema ružnih ljudi, samo niste isfrizirani.</h2>
-        <a  class="btn btn-primary js-scroll-trigger" href="{{ url('/register') }}">Registracija</a>
+        <a  class="btn btn-primary js-scroll-trigger" href="{{ URL::route('register') }}">Registracija</a>
       </div>
     </div>
   </header>

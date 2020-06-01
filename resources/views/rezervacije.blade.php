@@ -30,23 +30,38 @@
   <tr id="drugi">
   </tr>
   </table>
-  <form method="POST" action="{{ route('rezervacije.store') }}" enctype="multipart/form-data">
+  <form method="POST" action="{{ URL::route('rezervacije.store') }}" enctype="multipart/form-data">
+     {{ csrf_field() }}
   <div class="form-group">
-    <label for="exampleInputEmail1">Datum</label>
-    <input  class="form-control"  id="datum"> 
+    <label>Datum</label>
+    <input  class="form-control"  id="Datum"  name="datum"> 
     
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1" >Vrijeme</label>
-    <input  class="form-control"  id = "vrijeme">
+    <label>Vrijeme</label>
+    <input  class="form-control"  id = "vrijeme" name="vrijeme">
   </div>
   <h4> Odaberite uslugu </h4>
 <div>
-  <select id="listUsluga">
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="mercedes">Mercedes</option>
-  <option value="audi">Audi</option>
+  <select id="listUsluga" name="listUsluga">
+  <option value="Pranje Kose">Pranje Kose</option>
+  <option value="Feniranje Kose">Feniranje Kose</option>
+  <option value="Šišanje Kose">Šišanje Kose</option>
+  <option value="Bojanje Izrasta">Bojanje Izrasta</option>
+  <option value="Bojanje Potpuno">Bojanje Potpuno</option>  
+  <option value="Skidanje Boje">Skidanje Boje</option>
+  <option value="Pramenovi(Kapa)">Pramenovi(Kapa)</option>
+  <option value="Pramenovi(Folija)">Pramenovi(Folija)</option>
+  <option value="Ombre">Ombre</option>
+  <option value="Balayage">Balayage</option>
+  <option value="Minival">Minival</option>
+  <option value="Preljev Kose">Preljev Kose</option>
+  <option value="Peglanje">Peglanje</option>
+  <option value="Ampula">Ampula</option>
+  <option value="Botoks Kose">Botoks Kose</option>
+  <option value="Šminkanje">Šminkanje</option>
+  <option value="Šmikanje i Trepavice">Šmikanje i Trepavice</option>
+
 </select>
   </div>
   <button type="submit" class="btn btn-primary">Rezerviraj</button>
@@ -82,7 +97,6 @@ n =  new Date();
 function fillTable(termini) {
         var i = 0;
     
-      
         var row = document.getElementById("drugi");
         row.innerHTML = "";
         nizTermina = [{"vrijeme": "8.00" , "zauzet":  false},
@@ -113,11 +127,9 @@ function fillTable(termini) {
           i++;
   });
         i = 0;
-        termini.forEach(function(termini){
+        termini.forEach(function(termin){
           for(i = 0;i<niz.length;i++){
-            console.log(niz[8]);
-          if(parseInt(termini.vrijeme)== niz[i] && termini.Datum == datum){
-            console.log("AAAA");
+          if(parseFloat(termin.vrijeme)== niz[i] && termin.Datum == datum){
             $("#" + i).css("background-color","blue");
             nizTermina[i].zauzet = true;
 
@@ -128,12 +140,10 @@ function fillTable(termini) {
         })
 
       var tab = document.getElementsByClassName("termin");
-console.log(tab);
 var buttonsCount = tab.length;
 for (var i = 0; i <= buttonsCount; i++) {
     tab[i].onclick = function() {
         var id = this.id;
-        console.log(id);
         var vrijeme = nizTermina[id].vrijeme;
         
       if(nizTermina[id].zauzet == true){
@@ -142,7 +152,7 @@ for (var i = 0; i <= buttonsCount; i++) {
       if(nizTermina[id].zauzet == false){
         alert("Odabrali ste " + datum + " u " + vrijeme + ". Odaberite uslugu i pritisnite dugme rezerviraj");
         document.getElementById('vrijeme').value=vrijeme; 
-        document.getElementById('datum').value=datum; 
+        document.getElementById('Datum').value=datum; 
       }
      
     };
@@ -168,7 +178,6 @@ function fillTermine() {
     } else { echo "0 results"; }
     $conn->close();
     ?>;
-    console.log(termini);
   fillTable(termini);
   
  
@@ -212,7 +221,6 @@ $( "#nap" ).click(function() {
 
         if(d<1){
           m--;
-          console.log(m);
           if(m == 4 || m == 6 || m == 9 || m == 11){
             d = 30;
         }

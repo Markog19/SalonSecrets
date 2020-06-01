@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\KorisniciUsluge;
 use Illuminate\Http\Request;
-use App\Korisniciusluge;
-
+use Auth;
 class KorisniciUslugeContoller extends Controller
 {
     /**
@@ -14,8 +14,13 @@ class KorisniciUslugeContoller extends Controller
      */
     public function index()
     {
-        return view('userpanel');
-            }
+         $termin = Korisniciusluge::all();
+ 
+        return view('rezervacije',[
+            'user'=>$termin,
+        ]);
+                }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -24,7 +29,7 @@ class KorisniciUslugeContoller extends Controller
      */
     public function create()
     {
-        return view('userpanel');
+        //
     }
 
     /**
@@ -35,28 +40,26 @@ class KorisniciUslugeContoller extends Controller
      */
     public function store(Request $request)
     {
-         $this->validate($request, [
-            'datum' => 'required',
-            'vrijeme' => 'required',
-            'usluga'=>'required',
-        ]);
+       
         $termin = new Korisniciusluge;
-        $termin->id =  Auth::user()->id;
-        $termin->datum = $request->input('datum');
-        $termin->vrijeme = $request->input('vrijeme');
+        $termin->Datum =$request->datum;
+        $termin->vrijeme = $request->vrijeme;
+        $termin->usluga = $request->listUsluga;
+        $termin->IDKorisnik =  Auth::user()->id;
+        
 
-        $termin->usluga = $request->input('usluga');
-
+ 
         $termin->save();
+        return redirect('/rezervacije')->with('success', 'Termin created');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\KorisniciUsluge  $korisniciUsluge
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(KorisniciUsluge $korisniciUsluge)
     {
         //
     }
@@ -64,10 +67,10 @@ class KorisniciUslugeContoller extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\KorisniciUsluge  $korisniciUsluge
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(KorisniciUsluge $korisniciUsluge)
     {
         //
     }
@@ -76,10 +79,10 @@ class KorisniciUslugeContoller extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\KorisniciUsluge  $korisniciUsluge
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, KorisniciUsluge $korisniciUsluge)
     {
         //
     }
@@ -87,10 +90,10 @@ class KorisniciUslugeContoller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\KorisniciUsluge  $korisniciUsluge
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(KorisniciUsluge $korisniciUsluge)
     {
         //
     }

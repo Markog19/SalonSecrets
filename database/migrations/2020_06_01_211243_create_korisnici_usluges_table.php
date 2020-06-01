@@ -16,11 +16,10 @@ class CreateKorisniciUslugesTable extends Migration
         Schema::create('korisnici_usluges', function (Blueprint $table) {
             $table->id();
             $table->date('Datum');
-            $table->integer('vrijeme');
+            $table->float('vrijeme');
             $table->string('usluga');
             $table->biginteger('IDKorisnik')->unsigned()->index();
             $table->foreign('IDKorisnik')->references('id')->on('users')->onDelete('cascade');
-
         });
     }
 

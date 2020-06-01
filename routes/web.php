@@ -12,24 +12,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes();
+ 
 Route::get('/', function () {
     return view('index');
 });
 Route::get('/login',function(){
-	return view('login');
-});
+	return view('auth/login');
+})->name('login');
 Route::get('/register',function(){
-	return view('register');
-});
+	return view('auth/register');
+})->name('register');
  Route::get('/userpanel', function(){
  	return view('userpanel');
  });
- Route::get('/userpanel/rezervacije',function(){
-	return view('rezervacije');
-});
- 
-Auth::routes();
+
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin_area', ['middleware' => 'admin', function () {
@@ -37,4 +35,6 @@ Route::get('admin_area', ['middleware' => 'admin', function () {
 }]);
  Route::middleware('auth', 'admin')->get('/home', 'HomeController@index');
  Route::resource('rezervacije','KorisniciUslugeContoller');
- Route::post('userpanel/rezervacije/store','KorisniciUslugeContoller@store');
+ Route::get('/rezervacije','KorisniciUslugeContoller@index')->name('rezervacije.index');
+ Route::post('/rezervacije/store','KorisniciUslugeContoller@store')->name('rezervacije.store');
+
