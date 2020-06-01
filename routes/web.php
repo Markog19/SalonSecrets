@@ -25,7 +25,10 @@ Route::get('/register',function(){
  Route::get('/userpanel', function(){
  	return view('userpanel');
  });
- Route::resource('Termin','TerminiController');
+ Route::get('/userpanel/rezervacije',function(){
+	return view('rezervacije');
+});
+ 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -33,3 +36,5 @@ Route::get('admin_area', ['middleware' => 'admin', function () {
     //
 }]);
  Route::middleware('auth', 'admin')->get('/home', 'HomeController@index');
+ Route::resource('rezervacije','KorisniciUslugeContoller');
+ Route::post('userpanel/rezervacije/store','KorisniciUslugeContoller@store');

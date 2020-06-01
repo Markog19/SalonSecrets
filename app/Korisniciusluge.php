@@ -16,6 +16,6 @@ class Korisniciusluge extends Model
      * @var array
      */
     protected $fillable = [
-      'Datum', 'Vrijeme', 'IDKorisnik', 'Usluga'
+      'Datum', 'vrijeme', 'IDKorisnik', 'usluga'
     ];
 }

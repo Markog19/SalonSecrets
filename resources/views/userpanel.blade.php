@@ -147,7 +147,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
         <h1 class="mx-auto my-0 text-uppercase"></h1>
         <h2 class="text-white-50 mx-auto mt-2 mb-5">Nema ružnih ljudi, samo niste isfrizirani.</h2>
  <!-- Trigger/Open The Modal -->
-<button id="myBtn"class="btn btn-primary js-scroll-trigger" >Rezervacije</button>
+<button href="{{ url('rezervacije') }}" class="btn btn-primary js-scroll-trigger"  >Rezervacije</button>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -161,10 +161,10 @@ body {font-family: Arial, Helvetica, sans-serif;}
   <tr id="drugi">
   </tr>
   </table>
-  <form>
+  <form enctype="multipart/form-data">
   <div class="form-group">
     <label for="exampleInputEmail1">Datum</label>
-    <input type="email" class="form-control" aria-describedby="emailHelp" id="datum"> 
+    <input  class="form-control"  id="datum"> 
     
   </div>
   <div class="form-group">
@@ -371,16 +371,29 @@ btn.onclick = function() {
     y = n.getFullYear();
     m = n.getMonth() + 1;
     d = n.getDate();
-    var datum =  y + "-" + m + "-" + d;
+    var date =  y + "-" + m + "-" + d;
+    datum = formatDate(date)
+    document.getElementById("date").innerHTML = datum
 
 
-    document.getElementById("date").innerHTML = y+ "-" + m + "-" + d;
 if(brojac == 0){
       brojac++;
       fillTermine();
 }
 }
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
 
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -393,7 +406,6 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-
 </script>
 <script type="text/javascript">
 
@@ -402,7 +414,7 @@ window.onclick = function(event) {
     function fillTable(termini) {
         var i = 0;
     
-    var datum =  y + "-" + m + "-" + d;
+      
         var row = document.getElementById("drugi");
         row.innerHTML = "";
         nizTermina = [{"vrijeme": "8.00" , "zauzet":  false},
@@ -433,10 +445,10 @@ window.onclick = function(event) {
           i++;
   });
         i = 0;
-       console.log(termini);
         termini.forEach(function(termini){
           for(i = 0;i<niz.length;i++){
-          if(termini.Vrijeme == niz[i] && termini.Datum == datum){
+            console.log(niz[8]);
+          if(parseInt(termini.vrijeme)== niz[i] && termini.Datum == datum){
             console.log("AAAA");
             $("#" + i).css("background-color","blue");
             nizTermina[i].zauzet = true;
@@ -455,13 +467,14 @@ for (var i = 0; i <= buttonsCount; i++) {
         var id = this.id;
         console.log(id);
         var vrijeme = nizTermina[id].vrijeme;
-        document.getElementById('vrijeme').value=vrijeme; 
-        document.getElementById('datum').value=datum; 
+        
       if(nizTermina[id].zauzet == true){
         alert("Zauzet termin, molimo vas odaberite drugi");
       }
       if(nizTermina[id].zauzet == false){
         alert("Odabrali ste " + datum + " u " + vrijeme + ". Odaberite uslugu i pritisnite dugme rezerviraj");
+        document.getElementById('vrijeme').value=vrijeme; 
+        document.getElementById('datum').value=datum; 
       }
      
     };
@@ -476,7 +489,7 @@ function fillTermine() {
     if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
     }
-    $sql = "SELECT * FROM korisniciusluge"; //dodaj uslov za odabrani datum
+    $sql = "SELECT * FROM korisnici_usluges"; //dodaj uslov za odabrani datum
     $result = $conn->query($sql);
     $termini = array();
     if ($result->num_rows > 0) {
@@ -512,9 +525,10 @@ $( "#nap" ).click(function() {
             d = 1;
           }
           
-         datum =  y + "-" + m + "-" + d;
+         date =  y + "-" + m + "-" + d;
+         datum = formatDate(date);
         
-      document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
+      document.getElementById("date").innerHTML =datum
           fillTermine(); 
             //prilagoditi ako se promijeni mjesec i godina
     });
@@ -552,8 +566,10 @@ $( "#nap" ).click(function() {
           }
           
 
-         datum =  y + "-" + m + "-" + d;
-        document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
+        date =  y + "-" + m + "-" + d;
+         datum = formatDate(date);
+        
+      document.getElementById("date").innerHTML =datum
     fillTermine(); 
             //prilagoditi ako se promijeni mjesec i godina
 
