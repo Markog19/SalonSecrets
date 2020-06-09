@@ -122,7 +122,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
             <a class="nav-link js-scroll-trigger" href="#signup">O nama</a>
           </li>
            <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#signup">Profil</a>
+            <a class="nav-link js-scroll-trigger" href="{{ url('profil') }}">Profil</a>
           </li>
            <li class="nav-item">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -149,47 +149,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
  <!-- Trigger/Open The Modal -->
 <a href="{{ route('rezervacije.index') }}"><button  class="btn btn-primary js-scroll-trigger"  >Rezervacije</button></a>
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-   <table border="3px solid red">
-    <tr><th id="date" colspan="16"> 
-  </th></tr>
-  <tr id="drugi">
-  </tr>
-  </table>
-  <form enctype="multipart/form-data">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Datum</label>
-    <input  class="form-control"  id="datum"> 
-    
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1" >Vrijeme</label>
-    <input  class="form-control"  id = "vrijeme">
-  </div>
-  <h4> Odaberite uslugu </h4>
-<div>
-  <select id="listUsluga">
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="mercedes">Mercedes</option>
-  <option value="audi">Audi</option>
-</select>
-  </div>
-  <button type="submit" class="btn btn-primary">Rezerviraj</button>
-</form>
-  
-  <button value="naprijed" id="nap" >Naprijed</button>
-  <button value="nazad" id="naz" onclick="nazad()">Nazad</button>
-  </div>
-
-</div>
-    </div>
-</div>
   </header>
 
   <!-- About Section -->

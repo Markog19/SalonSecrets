@@ -26,6 +26,9 @@ Route::get('/register',function(){
  Route::get('/userpanel', function(){
  	return view('userpanel');
  });
+ Route::get('profil', function(){
+ 	return view('profil');
+ });
 
 
 
