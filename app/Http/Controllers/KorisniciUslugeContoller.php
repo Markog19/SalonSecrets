@@ -5,21 +5,15 @@ namespace App\Http\Controllers;
 use App\KorisniciUsluge;
 use Illuminate\Http\Request;
 use Auth;
+use Response;
+
 class KorisniciUslugeContoller extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-         $termin = Korisniciusluge::all();
- 
-        return view('rezervacije',[
-            'user'=>$termin,
-        ]);
-                }
+  public function index(){
+         $termini = Korisniciusluge::all();
+        return view('rezervacije')->with('termini', $termini);
+
+}
     
 
     /**
@@ -50,7 +44,7 @@ class KorisniciUslugeContoller extends Controller
 
  
         $termin->save();
-        return redirect('/rezervacije')->with('success', 'Termin created');
+        return redirect('/rezervacije');
     }
 
     /**
@@ -97,4 +91,7 @@ class KorisniciUslugeContoller extends Controller
     {
         //
     }
+ 
+ 
+    
 }

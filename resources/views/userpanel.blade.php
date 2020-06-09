@@ -147,7 +147,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
         <h1 class="mx-auto my-0 text-uppercase"></h1>
         <h2 class="text-white-50 mx-auto mt-2 mb-5">Nema ružnih ljudi, samo niste isfrizirani.</h2>
  <!-- Trigger/Open The Modal -->
-<a href="{{ URL::route('rezervacije.index') }}"><button  class="btn btn-primary js-scroll-trigger"  >Rezervacije</button></a>
+<a href="{{ route('rezervacije.index') }}"><button  class="btn btn-primary js-scroll-trigger"  >Rezervacije</button></a>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">

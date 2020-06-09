@@ -34,7 +34,6 @@ Route::get('admin_area', ['middleware' => 'admin', function () {
     //
 }]);
  Route::middleware('auth', 'admin')->get('/home', 'HomeController@index');
- Route::resource('rezervacije','KorisniciUslugeContoller');
  Route::get('/rezervacije','KorisniciUslugeContoller@index')->name('rezervacije.index');
  Route::post('/rezervacije/store','KorisniciUslugeContoller@store')->name('rezervacije.store');
 
