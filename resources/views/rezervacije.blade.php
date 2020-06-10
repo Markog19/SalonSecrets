@@ -231,7 +231,6 @@ var buttonsCount = tab.length;
 for (var i = 0; i < buttonsCount; i++) {
     tab.on("click","td",function() {
       var id = this.id;
-        console.log(id);
         var vrijeme = nizTermina[id].vrijeme;
         
       if(nizTermina[id].zauzet == true){
