@@ -11,7 +11,6 @@
 </table>
 
 <script type="text/javascript">
-	var datum;
 	 @foreach($termini as $termin)
 	  	$("#tablica").append("<tr><td>" + @json($termin->Datum) + "</td>" + "<td>" + @json($termin->vrijeme) + "</td>" + "<td>" + @json($termin->usluga) + "</td><td><button>Delete</button></td><td><button>Update</button></td></tr>");
 	  @endforeach

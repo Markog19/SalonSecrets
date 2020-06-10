@@ -16,7 +16,8 @@ class UserController extends Controller
     public function index()
     {
         
-        $korisnici = User::all();
+        $korisnici = User::all()->where('admin',0);
+        echo $korisnici;
         return view("Administrator")->with('korisnici',$korisnici);
     }
 
