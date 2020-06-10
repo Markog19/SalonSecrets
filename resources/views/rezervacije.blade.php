@@ -28,6 +28,9 @@
 
 </head>
 <body>
+  <ul>
+    <a href="{{ url('userpanel') }}"><li >Povratak</li></a>
+  </ul>
 <span class="close">&times;</span>
    <table border="3px solid red" id = "table">
     <tr><th id="date" colspan="16">

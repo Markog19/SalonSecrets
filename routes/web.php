@@ -44,6 +44,8 @@ Route::get('admin_area', ['middleware' => 'admin', function () {
 Route::get('/profil', 'KorisniciUslugeContoller@show');
 Route::get('/Administrator', 'UserController@index');
 Route::get('/Administrator/{id}', 'UserController@delete')->name('Administrator/id');
+Route::get('/profil/{id}', 'KorisniciUslugeContoller@delete')->name('profil/id');
+
 
 
 

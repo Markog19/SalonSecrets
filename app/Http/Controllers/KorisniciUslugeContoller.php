@@ -28,7 +28,6 @@ class KorisniciUslugeContoller extends Controller
     public function show()
     {
         $id = Auth::user()->id;
-        echo Auth::user()->name;
         $termini = Korisniciusluge::all()->where('IDKorisnik',$id);
 
 
@@ -102,7 +101,8 @@ class KorisniciUslugeContoller extends Controller
  
     public function delete ($id){
 
-
+         Korisniciusluge::where('id', $id)->delete();
+        return redirect('profil');
     }
 }
 
