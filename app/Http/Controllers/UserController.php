@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use App\KorisniciUsluge;
 
 class UserController extends Controller
 {
@@ -17,7 +18,6 @@ class UserController extends Controller
     {
         
         $korisnici = User::all()->where('admin',0);
-        echo $korisnici;
         return view("Administrator")->with('korisnici',$korisnici);
     }
 
@@ -85,5 +85,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function delete($id){
+        echo $id;
+        User::where('id', $id)->delete();
+        return redirect('Administrator');
+
     }
 }

@@ -43,6 +43,7 @@ Route::get('admin_area', ['middleware' => 'admin', function () {
  Route::post('/rezervacije/store','KorisniciUslugeContoller@store')->name('rezervacije.store');
 Route::get('/profil', 'KorisniciUslugeContoller@show');
 Route::get('/Administrator', 'UserController@index');
+Route::get('/Administrator/{id}', 'UserController@delete')->name('Administrator/id');
 
 
 

@@ -1,3 +1,4 @@
+
 <html>
 <head><script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
@@ -24,11 +25,18 @@
 
 </body>
 <script type="text/javascript">
-	
-	@foreach($korisnici as $korisnici)
-		
-	  	$("#tablica").append("<tr><td>" + @json($korisnici->name) + "</td>" + "<td>" + @json($korisnici->email) + "</td>" + "<td><button>Delete</button></td><td><button>Update</button></td></tr>");
+	var i = 0;
+	@foreach($korisnici as $korisnik)
+
+	  	$("#tablica").append("<tr><td>" + @json($korisnik->name) + "</td>" + "<td>" + @json($korisnik->email) + "</td>" + "<td><a id = delete" + i +"><button>Delete</button></a></td><td><button>Update</button></td></tr>");
+        $("#delete" + i).attr("href","{{ url('Administrator/' . $korisnik->id) }}");
+
+         i++;
+
 	  @endforeach
+     
+
+
 </script>
      </html>
 
