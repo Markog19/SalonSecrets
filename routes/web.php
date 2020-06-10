@@ -32,6 +32,8 @@ Route::get('/register',function(){
 
 
 
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin_area', ['middleware' => 'admin', function () {
     //
@@ -39,4 +41,10 @@ Route::get('admin_area', ['middleware' => 'admin', function () {
  Route::middleware('auth', 'admin')->get('/home', 'HomeController@index');
  Route::get('/rezervacije','KorisniciUslugeContoller@index')->name('rezervacije.index');
  Route::post('/rezervacije/store','KorisniciUslugeContoller@store')->name('rezervacije.store');
+Route::get('/profil', 'KorisniciUslugeContoller@show');
+Route::get('/Administrator', 'UserController@index');
+
+
+
+
 

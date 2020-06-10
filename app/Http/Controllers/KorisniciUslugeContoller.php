@@ -25,6 +25,16 @@ class KorisniciUslugeContoller extends Controller
     {
         //
     }
+    public function show()
+    {
+        $id = Auth::user()->id;
+        echo Auth::user()->name;
+        $termini = Korisniciusluge::all()->where('IDKorisnik',$id);
+
+
+        return view('profil')->with('termini', $termini);
+
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -53,10 +63,7 @@ class KorisniciUslugeContoller extends Controller
      * @param  \App\KorisniciUsluge  $korisniciUsluge
      * @return \Illuminate\Http\Response
      */
-    public function show(KorisniciUsluge $korisniciUsluge)
-    {
-        //
-    }
+  
 
     /**
      * Show the form for editing the specified resource.
@@ -76,9 +83,9 @@ class KorisniciUslugeContoller extends Controller
      * @param  \App\KorisniciUsluge  $korisniciUsluge
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, KorisniciUsluge $korisniciUsluge)
+    public function update(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -93,5 +100,9 @@ class KorisniciUslugeContoller extends Controller
     }
  
  
-    
+    public function delete ($id){
+
+
+    }
 }
+
