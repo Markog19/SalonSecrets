@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2020 at 11:15 PM
+-- Generation Time: Jun 10, 2020 at 08:07 AM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.2
+-- PHP Version: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -40,22 +39,23 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `korisniciusluge`
+-- Table structure for table `korisnici_usluges`
 --
 
-CREATE TABLE `korisniciusluge` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE `korisnici_usluges` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `Datum` date NOT NULL,
-  `Vrijeme` int(11) NOT NULL,
-  `IDkorisnik` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `vrijeme` double(8,2) NOT NULL,
+  `usluga` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `IDKorisnik` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `korisniciusluge`
+-- Dumping data for table `korisnici_usluges`
 --
 
-INSERT INTO `korisniciusluge` (`ID`, `Datum`, `Vrijeme`, `IDkorisnik`) VALUES
-(1, '2020-03-27', 8, 1);
+INSERT INTO `korisnici_usluges` (`id`, `Datum`, `vrijeme`, `usluga`, `IDKorisnik`) VALUES
+(1, '2020-06-10', 12.00, 'Pranje Kose', 1);
 
 -- --------------------------------------------------------
 
@@ -76,7 +76,9 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1);
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2020_06_01_211243_create_korisnici_usluges_table', 1),
+(5, '2020_06_10_022931_add_role_to_users_table', 1);
 
 -- --------------------------------------------------------
 
@@ -105,7 +107,7 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `admin` int(50) DEFAULT 0
+  `admin` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -113,7 +115,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `admin`) VALUES
-(2, 'Marko', 'marinagalic@ymail.com', NULL, '$2y$10$t511tgW3QB6.RE3M6kMl0.WBTmXhzbgrclf3g15nYxofzG5Z1F5KW', NULL, '2020-03-27 08:27:54', '2020-03-27 08:27:54', 0);
+(1, 'Marina', 'marinagalic@ymail.com', NULL, '$2y$10$kHgI.WaJcSRTFteWKZhspuLUub7bntmHBZnj.Haj9bnnq7wuVGK/e', NULL, '2020-06-10 01:52:48', '2020-06-10 01:52:48', 0),
+(2, 'marko', 'markog19@gmail.com', NULL, '$2y$10$QBeWSMY21/z7h9XxNREGgeskHhz/l9abg.5g3tkffnuTNTvFlXj4.', NULL, '2020-06-10 01:54:06', '2020-06-10 01:54:06', 1);
 
 --
 -- Indexes for dumped tables
@@ -126,10 +129,11 @@ ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `korisniciusluge`
+-- Indexes for table `korisnici_usluges`
 --
-ALTER TABLE `korisniciusluge`
-  ADD PRIMARY KEY (`ID`);
+ALTER TABLE `korisnici_usluges`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `korisnici_usluges_idkorisnik_index` (`IDKorisnik`);
 
 --
 -- Indexes for table `migrations`
@@ -161,22 +165,32 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `korisniciusluge`
+-- AUTO_INCREMENT for table `korisnici_usluges`
 --
-ALTER TABLE `korisniciusluge`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `korisnici_usluges`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `korisnici_usluges`
+--
+ALTER TABLE `korisnici_usluges`
+  ADD CONSTRAINT `korisnici_usluges_idkorisnik_foreign` FOREIGN KEY (`IDKorisnik`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
