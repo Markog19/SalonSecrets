@@ -46,6 +46,8 @@ Route::get('/Administrator', 'UserController@index');
 Route::get('/Administrator/{id}', 'UserController@delete')->name('Administrator/id');
 Route::get('/profil/{id}', 'KorisniciUslugeContoller@delete')->name('profil/id');
 Route::get('/profil/{id}', 'KorisniciUslugeContoller@update')->name('profil/id');
+Route::get('/Administrator/{id}', 'UserController@update')->name('Administrator/id');
+
 
 
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use App\KorisniciUsluge;
+use DB;
 
 class UserController extends Controller
 {
@@ -71,9 +72,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        //
+        DB::table('users')
+            ->where('id', $id)
+            ->update([
+                'name'=>$request->ime,
+                'email'=>$request->email,
+                
+
+        ]);
+                    return redirect('Administrator');
+
+
     }
 
     /**
