@@ -44,9 +44,9 @@ Route::get('admin_area', ['middleware' => 'admin', function () {
 Route::get('/profil', 'KorisniciUslugeContoller@show');
 Route::get('/Administrator', 'UserController@index');
 Route::get('/Administrator/{id}', 'UserController@delete')->name('profil/{ID}');
+Route::get('/azuriraj/{id}', 'UserController@update')->name('azuriraj/{id}');
 Route::get('/profil/{ID}', 'KorisniciUslugeContoller@delete')->name('profil/{ID}');
 Route::get('/update/{id}', 'KorisniciUslugeContoller@update')->name('update/{id}');
-Route::get('/update/{id}', 'UserController@update')->name('update/{id}');
 
 
 
