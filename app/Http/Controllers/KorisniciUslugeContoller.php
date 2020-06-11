@@ -6,7 +6,7 @@ use App\KorisniciUsluge;
 use Illuminate\Http\Request;
 use Auth;
 use Response;
-
+use DB;
 class KorisniciUslugeContoller extends Controller
 {
   public function index(){
@@ -82,9 +82,19 @@ class KorisniciUslugeContoller extends Controller
      * @param  \App\KorisniciUsluge  $korisniciUsluge
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
-        
+        DB::table('korisnici_usluges')
+            ->where('id', $id)
+            ->update([
+                'datum'=>$request->datum,
+                'vrijeme'=>$request->vrijeme,
+                'usluga'=>$request->usluga
+
+        ]);
+                    return redirect('profil');
+
+
     }
 
     /**
