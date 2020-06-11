@@ -43,10 +43,10 @@ Route::get('admin_area', ['middleware' => 'admin', function () {
  Route::post('/rezervacije/store','KorisniciUslugeContoller@store')->name('rezervacije.store');
 Route::get('/profil', 'KorisniciUslugeContoller@show');
 Route::get('/Administrator', 'UserController@index');
-Route::get('/Administrator/{id}', 'UserController@delete')->name('Administrator/id');
-Route::get('/profil/{id}', 'KorisniciUslugeContoller@delete')->name('profil/id');
-Route::get('/profil/{id}', 'KorisniciUslugeContoller@update')->name('profil/id');
-Route::get('/Administrator/{id}', 'UserController@update')->name('Administrator/id');
+Route::get('/Administrator/{id}', 'UserController@delete')->name('profil/{ID}');
+Route::get('/profil/{ID}', 'KorisniciUslugeContoller@delete')->name('profil/{ID}');
+Route::get('/update/{id}', 'KorisniciUslugeContoller@update')->name('update/{id}');
+Route::get('/update/{id}', 'UserController@update')->name('update/{id}');
 
 
 

@@ -50,7 +50,7 @@
 	}
 			 @foreach($termini as $termin)
 
-	  	$('#forma').attr('action',"{{ url('profil/' . $termin->id) }}");
+	  	$('#forma').attr('action',"{{ url('update/' . $termin->id) }}");
 	  	@endforeach
 	  	}
 

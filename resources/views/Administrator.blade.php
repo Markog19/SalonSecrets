@@ -57,7 +57,7 @@
     }
              @foreach($korisnici as $korisnik)
 
-        $('#forma').attr('action',"{{ url('Administrator/' . $korisnik->id) }}");
+        $('#forma').attr('action',"{{ url('update/' . $korisnik->id) }}");
         @endforeach
         }
      
