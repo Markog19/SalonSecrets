@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+body {
+	background: url('../img/novaslika1.jpg') center center no-repeat;
+	height: 100%;
+ 	width: 100%;
+  text-align: center;
+  background-size: 100%, 100%;
+}
+#tablica {
+	margin-left:auto; 
+    margin-right:auto;
+}
+.sve{
+	top: 30%;
+	position:relative;
+}
+li{
+      list-style-type: none;
+      color: white;
+}
+#table,th,td {
+    border:3px  solid;  
+    border-color:#aaa9ad;
+  color: white;
+      margin-left:auto; 
+    margin-right:auto;
+}
+    button {
+  border-radius: 4px;
+  background-color: #aaa9ad;
+}
+#tablica {
+	text-align: center;
+	height:20%;
+	width:40%;
+}
+#section-btn {
+    background: #ce3232;
+    border-radius: 10px;
+    color: #f9f9f9;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 10px 25px;
+    transition: 0.5s 0.2s;
+    bottom: 20px;
+    position: relative;
+  }
+  #forma {
+  top: 10px;
+  color: white;
+}
+#datum,#vrijeme,#usluga {
+  opacity: 0.4;
+  font-weight: bold;
+}
+label{
+	color: white;
+}

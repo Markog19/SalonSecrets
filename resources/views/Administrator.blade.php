@@ -1,8 +1,14 @@
 
 <html>
 <head><script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+     <link rel="stylesheet" href="css/administrator.css">
 </head>
 <body>
+   
+
+        <div class="sve">
+                        <h1 id = "admin">Admin Panel</h1>
+
 <table id = "tablica" border="3px solid red">
 	<tr><td> Ime</td> <td> Email </td></tr>
 
@@ -18,17 +24,17 @@
 
 
 </table>
-<li class="nav-item">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                    <a class="nav-link js-scroll-trigger" href="{{ route('logout') }}"
+
+                
+                    <button id="section-btn">
+                        <a class="nav-link js-scroll-trigger" href="{{ route('logout') }}"
                      onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
                     Odjava</a>
+                </button>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf</form></li>
-
+                    @csrf</form>
+</div>
 </body>
 <script type="text/javascript">
 	var i = 0,nizIme = [],nizEmail = [];

@@ -1,21 +1,28 @@
 <html>
 <head>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<style>
+  *{
+font-family:  'Varela Round';  }
+
+</style>
+     <link rel="stylesheet" href="css/profil.css">
 
 </head>
 <body>
-	   <a href="{{ url('userpanel') }}"><li >Povratak</li></a>
+		<div class="sve">
+	   <a  href="{{ url('userpanel') }}"><button id="section-btn">POVRATAK NA POČETNU</button></a>
 <table id = "tablica" border="3px solid red">
 	<tr><td> Datum</td> <td> Vrijeme </td><td> Usluga</td></tr>
-	
 
 </table>
 
-<form id = "forma">
+<form id = "form">
 	
 
 
 </form>
+</div>
 </body>
 
 <script type="text/javascript">

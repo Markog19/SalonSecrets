@@ -1,4 +1,4 @@
-<html>
+  <html>
 <head>
    <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,12 +10,14 @@
   <title>SALON SECRETS</title>
 
 <style>
-
+  *{
+font-family:  'Varela Round';  }
 #date{
   text-align: center;
 }
 </style>
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/templatemo-style.css">
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -28,29 +30,33 @@
 
 </head>
 <body>
+
+
+  <div id = "forme">
+
   <ul>
-    <a href="{{ url('userpanel') }}"><li >Povratak</li></a>
+<button  class = "section-btn"><a id="poc" href="{{ url('userpanel') }}">Povratak na početnu</a></button>
   </ul>
-<span class="close">&times;</span>
-   <table border="3px solid red" id = "table">
-    <tr><th id="date" colspan="16">
+   <table  id = "table">
+    <tr><th id="date" colspan="15">
   </th></tr>
   <tr id="drugi">
   </tr>
   </table>
+  <div id = "sve">
   <form method="POST" action="{{ URL::route('rezervacije.store') }}" enctype="multipart/form-data">
      {{ csrf_field() }}
+     
   <div class="form-group">
     <label>Datum</label>
     <input  class="form-control"  id="Datum"  name="datum"> 
     
-  </div>
-  <div class="form-group">
+ 
     <label>Vrijeme</label>
     <input  class="form-control"  id = "vrijeme" name="vrijeme">
-  </div>
-  <h4> Odaberite uslugu </h4>
-<div>
+  
+  <h4 id="odaberite"> Odaberite uslugu </h4>
+
   <select id="listUsluga" name="listUsluga">
   <option value="Pranje Kose">Pranje Kose</option>
   <option value="Feniranje Kose">Feniranje Kose</option>
@@ -72,11 +78,14 @@
 
 </select>
   </div>
-  <button type="submit" class="btn btn-primary">Rezerviraj</button>
+  <button type="submit"  class="section-btn btn">Rezerviraj</button>
 </form>
   
-  <button value="naprijed" id="nap"  >Naprijed</button>
-  <button value="nazad" id="naz" >Nazad</button>
+  <button value="naprijed" id="nap" class=" btn-rezervacije" >Naprijed</button>
+  <button value="nazad" id="naz" class="btn-rezervacije" >Nazad</button>
+</div>
+</div>
+</div>
     </body>
 
 <script type="text/javascript">
@@ -146,7 +155,7 @@
         @foreach ($termini as $termin)
         for(i = 0;i<duljina;i++){
         if(@json($termin->vrijeme) == niz[i] && @json($termin->Datum) == datum){
-          $("#" + i).css("background-color","blue");
+          $("#" + i).css("background-color","#ce3232");
             nizTermina[i].zauzet = true;
         }
       }
