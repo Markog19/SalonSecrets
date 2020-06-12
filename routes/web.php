@@ -47,6 +47,10 @@ Route::get('/Administrator/{id}', 'UserController@delete')->name('profil/{ID}');
 Route::get('/azuriraj/{id}', 'UserController@update')->name('azuriraj/{id}');
 Route::get('/profil/{ID}', 'KorisniciUslugeContoller@delete')->name('profil/{ID}');
 Route::get('/update/{id}', 'KorisniciUslugeContoller@update')->name('update/{id}');
+Route::post('index/contact','ContactFormController@store');
+Route::post('/contact','ContactFormController@store1');
+
+
 
 
 

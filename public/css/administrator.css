@@ -20,7 +20,7 @@ li{
       color: white;
 }
 #table,th,td {
-    border:3px  solid;  
+    border:1px  solid;  
     border-color:#aaa9ad;
   color: white;
       margin-left:auto; 
@@ -50,9 +50,10 @@ li{
   #forma {
   top: 10px;
   color: white;
+  background-color: 
 }
 #ime,#email {
-  opacity: 0.4;
+ 
   font-weight: bold;
 }
 label{

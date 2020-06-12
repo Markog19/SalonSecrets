@@ -13,7 +13,7 @@ font-family:  'Varela Round';  }
 		<div class="sve">
 	   <a  href="{{ url('userpanel') }}"><button id="section-btn">POVRATAK NA POČETNU</button></a>
 <table id = "tablica" border="3px solid red">
-	<tr><td> Datum</td> <td> Vrijeme </td><td> Usluga</td></tr>
+	<tr><td> Datum</td> <td> Vrijeme </td><td> Usluga</td><td colspan="2">Funkcije</td></tr>
 
 </table>
 

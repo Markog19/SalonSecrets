@@ -26,6 +26,8 @@ http://www.templatemo.com/tm-515-eatery
 
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="css/templatemo-style.css">
+         <script src="https://smtpjs.com/v3/smtp.js"></script>  
+
 
 </head>
 <body>
@@ -422,12 +424,14 @@ http://www.templatemo.com/tm-515-eatery
                          <div class="col-md-12 col-sm-12">
                               <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
                                    <h2>KONTAKTIRAJTE NAS</h2>
+                                     
+
                               </div>
                          </div>
 
                          <!-- CONTACT FORM -->
-                         <form action="sendmail()"  class="wow fadeInUp" id="contact-form" role="form" data-wow-delay="0.8s">
-
+                         <form action="{{url('index/contact')}}" method="POST"  class="wow fadeInUp" id="contact-form" role="form" data-wow-delay="0.8s">
+                              {{ csrf_field() }}
                               <!-- IF MAIL SENT SUCCESSFUL  // connect this with custom JS -->
                               <h6 class="text-success">Vaša poruka je uspješno poslana.</h6>
                               
@@ -446,7 +450,7 @@ http://www.templatemo.com/tm-515-eatery
                                    <input type="text" class="form-control" id="cf-subject" name="subject" placeholder="Tema">
 
                                    <textarea class="form-control" rows="6" id="cf-message" name="message" placeholder="Još neki podatak"></textarea>
-
+                                   @csrf
                                    <button type="submit" class="form-control" id="cf-submit" name="submit">POŠALJI</button>
                               </div>
                          </form>
@@ -534,18 +538,7 @@ http://www.templatemo.com/tm-515-eatery
      <script src="js/jquery.magnific-popup.min.js"></script>
      <script src="js/smoothscroll.js"></script>
      <script src="js/custom.js"></script>
-<script type="text/javascript">
-     
+  
 
-     function sendMail() {
-          console.log("AAA");
-    var link = "mailto:fsalon537@gmail.com"
-             + "?cc=" + escape(document.getElementById('cf-email').value)
-             + "&subject=" + escape(document.getElementById('cf-subject').value)
-             + "&body=" + escape(document.getElementById('cf-body').value);
-
-    window.location.href = link;
-}
-</script>
 </body>
 </html>

@@ -433,8 +433,8 @@ http://www.templatemo.com/tm-515-eatery
                          </div>
 
                          <!-- CONTACT FORM -->
-                         <form action="#" method="post" class="wow fadeInUp" id="contact-form" role="form" data-wow-delay="0.8s">
-
+                        <form action="{{url('/contact')}}" method="POST"  class="wow fadeInUp" id="contact-form" role="form" data-wow-delay="0.8s">
+                              {{ csrf_field() }}
                               <!-- IF MAIL SENT SUCCESSFUL  // connect this with custom JS -->
                               <h6 class="text-success">Vaša poruka je uspješno poslana.</h6>
                               
@@ -446,14 +446,14 @@ http://www.templatemo.com/tm-515-eatery
                               </div>
 
                               <div class="col-md-6 col-sm-6">
-                                   <input type="email" class="form-control" id="cf-email" name="email" placeholder="Email adresa">
+                                   <input type="email" class="form-control" id="cf-email" value="{{Auth::user()->email}}" name="email" placeholder="Email adresa">
                               </div>
 
                               <div class="col-md-12 col-sm-12">
                                    <input type="text" class="form-control" id="cf-subject" name="subject" placeholder="Tema">
 
                                    <textarea class="form-control" rows="6" id="cf-message" name="message" placeholder="Još neki podatak"></textarea>
-
+                                   @csrf
                                    <button type="submit" class="form-control" id="cf-submit" name="submit">POŠALJI</button>
                               </div>
                          </form>

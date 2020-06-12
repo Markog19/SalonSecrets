@@ -10,7 +10,7 @@
                         <h1 id = "admin">Admin Panel</h1>
 
 <table id = "tablica" border="3px solid red">
-	<tr><td> Ime</td> <td> Email </td></tr>
+	<tr><td> Ime</td> <td > Email </td ><td colspan="2">Funkcije</td></tr>
 
 	
 
