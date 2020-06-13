@@ -129,12 +129,12 @@ http://www.templatemo.com/tm-515-eatery
 
                     <div class="col-md-6 col-sm-12">
                          <div class="about-info">
-                              <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
+                              <div class="section-title wow fadeInUp" style="bottom:60px; position: relative;"data-wow-delay="0.2s">
                                    <h4>NAŠA PRIČA</h4>
                                    <h2>SALON LIJEPIH FRIZURA OD 2019.</h2>
                               </div>
 
-                              <div class="wow fadeInUp" data-wow-delay="0.4s">
+                              <div class="wow fadeInUp"style="bottom:60px; position: relative;"  data-wow-delay="0.4s">
                                    <p>SALON SECRETS nude kompletne frizerske usluge, farbanje, pramenovi, 
                                            šišanje, feniranje, svečane frizure, keratinsko ispravljanje kose, nadogradnja kose, zatim
                                            kozmetičke usluge, profesionalno šminkanje za sve prilike svjetski poznatom Kryolan kozmetikom.</p>
@@ -145,7 +145,7 @@ http://www.templatemo.com/tm-515-eatery
 
                     <div class="col-md-6 col-sm-12">
                          <div class="wow fadeInUp about-image" data-wow-delay="0.6s">
-                              <img src="images/kry5.jpg" class="img-responsive" alt="">
+                              <img src="img/kry5.jpg" class="img-responsive" alt="">
                          </div>
                     </div>
                     
@@ -170,7 +170,7 @@ http://www.templatemo.com/tm-515-eatery
                          
                           <div class="col-md-4 col-sm-4">
                          <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
-                              <img src="images/vlasnica.jpg" class="img-responsive" alt="">
+                              <img src="img/vlasnica.jpg" class="img-responsive" alt="">
                                    <div class="team-hover">
                                         <div class="team-item">
                                              <h4>Najčešće su uspješni oni koji ne znaju da su pogreške neizbježne</h4> 
@@ -186,7 +186,7 @@ http://www.templatemo.com/tm-515-eatery
 
                     <div class="col-md-4 col-sm-4">
                          <div class="team-thumb wow fadeInUp" data-wow-delay="0.4s">
-                              <img src="images/slikica2.jpg" class="img-responsive" alt="">
+                              <img src="img/slikica2.jpg" class="img-responsive" alt="">
                                    <div class="team-hover">
                                         <div class="team-item">
                                              <h4>Marina će osigurati da o kosi počnete razmišljati kao adutu, a ne obavezi.</h4>
@@ -202,7 +202,7 @@ http://www.templatemo.com/tm-515-eatery
 
                     <div class="col-md-4 col-sm-4">
                          <div class="team-thumb wow fadeInUp" data-wow-delay="0.6s">
-                              <img src="images/slikica.jpg" class="img-responsive" alt="">
+                              <img src="img/slikica.jpg" class="img-responsive" alt="">
                                    <div class="team-hover">
                                         <div class="team-item">
                                              <h4>Dugogodišnje iskustvo omogućit će savršen odabir proizdvoda za Vas, kao i profesionalno šminkanje.</h4>
@@ -232,16 +232,16 @@ http://www.templatemo.com/tm-515-eatery
 
                     <div class="col-md-12 col-sm-12">
                          <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
-                              <h2>Ponuda</h2>
+                             <a href="{{url('/ponuda')}}"> <h2>Ponuda</h2></a>
                               <h4>Ponuda &amp; Cjenik</h4>
                          </div>
-                    </div>
-
+                  
+                    
                     <div class="col-md-4 col-sm-6">
                          <!-- MENU THUMB -->
                          <div class="menu-thumb">
-                              <a href="images/pranjee.jpg" class="image-popup" title="Šišanje kose">
-                                   <img src="images/pranjee.jpg" class="img-responsive" alt="">
+                              <a href="img/pranjee.jpg" class="image-popup" title="Šišanje kose">
+                                   <img src="img/pranjee.jpg" class="img-responsive" alt="">
 
                                    <div class="menu-info">
                                         <div class="menu-item">
@@ -259,8 +259,8 @@ http://www.templatemo.com/tm-515-eatery
                     <div class="col-md-4 col-sm-6">
                          <!-- MENU THUMB -->
                          <div class="menu-thumb">
-                              <a href="images/sisanje.jpg" class="image-popup" title="Self-made Salad">
-                                   <img src="images/sisanje.jpg" class="img-responsive" alt="">
+                              <a href="img/sisanje.jpg" class="image-popup" title="Self-made Salad">
+                                   <img src="img/sisanje.jpg" class="img-responsive" alt="">
 
                                    <div class="menu-info">
                                         <div class="menu-item">
@@ -278,8 +278,8 @@ http://www.templatemo.com/tm-515-eatery
                     <div class="col-md-4 col-sm-6">
                          <!-- MENU THUMB -->
                          <div class="menu-thumb">
-                              <a href="images/fen.jpg" class="image-popup" title="Chinese Noodle">
-                                   <img src="images/fen.jpg" class="img-responsive" alt="">
+                              <a href="img/fen.jpg" class="image-popup" title="Chinese Noodle">
+                                   <img src="img/fen.jpg" class="img-responsive" alt="">
 
                                    <div class="menu-info">
                                         <div class="menu-item">
@@ -297,8 +297,8 @@ http://www.templatemo.com/tm-515-eatery
                     <div class="col-md-4 col-sm-6">
                          <!-- MENU THUMB -->
                          <div class="menu-thumb">
-                              <a href="images/farbanje.jpg" class="image-popup" title="Rice Soup">
-                                   <img src="images/farbanje.jpg" class="img-responsive" alt="">
+                              <a href="img/farbanje.jpg" class="image-popup" title="Rice Soup">
+                                   <img src="img/farbanje.jpg" class="img-responsive" alt="">
 
                                    <div class="menu-info">
                                         <div class="menu-item">
@@ -312,12 +312,11 @@ http://www.templatemo.com/tm-515-eatery
                               </a>
                          </div>
                     </div>
-
                     <div class="col-md-4 col-sm-6">
                          <!-- MENU THUMB -->
                          <div class="menu-thumb">
-                              <a href="images/novobal.jpg" class="image-popup" title="Project title">
-                                   <img src="images/novobal.jpg" class="img-responsive" alt="">
+                              <a href="img/novobal.jpg" class="image-popup" title="Project title">
+                                   <img src="img/novobal.jpg" class="img-responsive" alt="">
 
                                    <div class="menu-info">
                                         <div class="menu-item">
@@ -335,8 +334,8 @@ http://www.templatemo.com/tm-515-eatery
                     <div class="col-md-4 col-sm-6">
                          <!-- MENU THUMB -->
                          <div class="menu-thumb">
-                              <a href="images/perm.jpg" class="image-popup" title="Project title">
-                                   <img src="images/perm.jpg" class="img-responsive" alt="">
+                              <a href="img/perm.jpg" class="image-popup" title="Project title">
+                                   <img src="img/perm.jpg" class="img-responsive" alt="">
 
                                    <div class="menu-info">
                                         <div class="menu-item">
@@ -346,6 +345,7 @@ http://www.templatemo.com/tm-515-eatery
                                         <div class="menu-price">
                                              <span>50 KMS</span>
                                         </div>
+                                        <
                                    </div>
                               </a>
                          </div>
@@ -354,6 +354,8 @@ http://www.templatemo.com/tm-515-eatery
 
                </div>
           </div>
+            </div>
+
      </section>
 
 
@@ -511,10 +513,8 @@ http://www.templatemo.com/tm-515-eatery
 
                     <div class="col-md-2 col-sm-4">
                          <ul class="wow fadeInUp social-icon" data-wow-delay="0.4s">
-                              <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                              <li><a href="#" class="fa fa-twitter"></a></li>
-                              <li><a href="#" class="fa fa-instagram"></a></li>
-                              <li><a href="#" class="fa fa-google"></a></li>
+                              <li ><img style="width:60px; height:50px" src = "https://pngimg.com/uploads/github/github_PNG53.png"><a href="https://github.com/Markog19/Frizeraj" class="fa btn-github" attr="facebook icon" ></a></li>
+                              <li> <a href = "https://docs.google.com/document/d/1t-fRGJonkypnDTTJjZMbRQOzo6F8oCngjruYE09hb9s/edit?usp=sharing"> Vizija</a></li>
                          </ul>
 
                          <div class="wow fadeInUp copyright-text" data-wow-delay="0.8s"> 

@@ -29,6 +29,9 @@ Route::get('/register',function(){
  Route::get('profil', function(){
  	return view('profil');
  });
+ Route::get('/ponuda',function(){
+	return view('ponuda');
+})->name('ponuda');
 
 
 
@@ -43,10 +46,10 @@ Route::get('admin_area', ['middleware' => 'admin', function () {
  Route::post('/rezervacije/store','KorisniciUslugeContoller@store')->name('rezervacije.store');
 Route::get('/profil', 'KorisniciUslugeContoller@show');
 Route::get('/Administrator', 'UserController@index');
-Route::get('/Administrator/{id}', 'UserController@delete')->name('profil/{ID}');
+Route::get('/Administrator/{id}', 'UserController@delete')->name('admin/{ID}');
 Route::get('/azuriraj/{id}', 'UserController@update')->name('azuriraj/{id}');
-Route::get('/profil/{ID}', 'KorisniciUslugeContoller@delete')->name('profil/{ID}');
-Route::get('/update/{id}', 'KorisniciUslugeContoller@update')->name('update/{id}');
+Route::get('/delete/{ID}', 'KorisniciUslugeContoller@delete');
+Route::get('/update/{id}', 'KorisniciUslugeContoller@update');
 Route::post('index/contact','ContactFormController@store');
 Route::post('/contact','ContactFormController@store1');
 

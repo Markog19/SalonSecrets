@@ -84,10 +84,9 @@ class KorisniciUslugeContoller extends Controller
      */
     public function update(Request $request,$id)
     {
-        DB::table('korisnici_usluges')
-            ->where('id', $id)
-            ->update([
-                'datum'=>$request->datum,
+ json_encode("AA");
+        DB::table('korisnici_usluges')->where('id', $id)->update([
+                'Datum'=>$request->datum,
                 'vrijeme'=>$request->vrijeme,
                 'usluga'=>$request->usluga
 

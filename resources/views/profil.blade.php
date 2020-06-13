@@ -23,49 +23,62 @@ font-family:  'Varela Round';  }
 
 </form>
 </div>
-</body>
 
 <script type="text/javascript">
-	var i = 0,nizDatum = [],nizVrijeme = [],nizUsluge = [];
+
+	var i = 0,nizDatum = [],nizVrijeme = [],nizUsluge = [],nizID = [];
 	 @foreach($termini as $termin)
 	  	$("#tablica").append("<tr><td>" + @json($termin->Datum) + "</td>" + "<td>" + @json($termin->vrijeme) + "</td>" + "<td>" + @json($termin->usluga) + "</td><td><a id = delete" + i + "><button>Delete</button></a> 	</td><td><button clicked = true class = update onclick = forma(" + i + ")" + ">Update</button></td></tr>");
-	  	$("#delete" + i).attr("href","{{ url('profil/' . $termin->id) }}");
+	  	$("#delete" + i).attr("href","{{ url('delete/' . $termin->id) }}");
 
 	 
 	  	nizDatum[i] = @json($termin->Datum);
 	  	nizVrijeme[i] = @json($termin->vrijeme);
 	  	nizUsluge[i] = @json($termin->usluga);
+	  	nizID[i] = @json($termin->id);
 
 
          i++;
 	  @endforeach
 
-	  	
-	 function forma(i){
-	 const button = document.getElementsByClassName('update');
-	
-	 $("form").append("<label for='datum'>Datum:</label><br>" + "<input id='datum' name='datum' ><br>" + "<label for='vrijeme'>Vrijeme:</label><br>"
-	 
- +"<input  id='vrijeme' name='vrijeme'><br>" + "<label for='usluga'>Usluga:</label><br>"
- +"<input ' id='usluga' name='usluga'><br>" + "<button type='submit' form='forma' value='Submit'>Submit</button><br>");
 
+	 function forma(i){
+	 	
+	 			console.log("AAA");
+	 		
+	 const button = document.getElementsByClassName('update');
+	 $("form").append("<label for='datum'>Datum:</label><br>" + "<input id='datum' name='datum' ><br>" + "<label for='vrijeme'>Vrijeme:</label><br>"
+	  +"<input  id='vrijeme' name='vrijeme'><br>" + "<label for='usluga'>Usluga:</label><br>"
+ +"<input ' id='usluga' name='usluga'><br>" + "<button type='submit'  value='Submit'>Submit</button><br>");
 			document.getElementById('datum').value=nizDatum[i];
 			document.getElementById('vrijeme').value=nizVrijeme[i];
 			document.getElementById('usluga').value=nizUsluge[i];
-			for(var i = 0;i<button.length;i++){
-				button[i].disabled = true
+				 			console.log("AAA");
+
+			for(var j = 0;j<button.length;j++){
+				button[j].disabled = true
 	}
-			 @foreach($termini as $termin)
+	
+	for(var k = 0;k<=i;k++){
+		if (i == 0){
 
-	  	$('#forma').attr('action',"{{ url('update/' . $termin->id) }}");
-	  	@endforeach
-	  	}
+			$('#form').attr('action',"{{ url('update/'.$termin->first()->id) }}");
+			break;
+
+		}
+		else{
+$('#form').attr('action',"{{ url('update/'.$termin->skip(1)->first()->id) }}");
+break;
+}
+}
+}
+	  	
+	  	
 
 
 
 	  
 	  
-
 	
 	  
 	  
@@ -76,6 +89,7 @@ font-family:  'Varela Round';  }
 	  	 
 
 </script>
+</body>
 
 
 

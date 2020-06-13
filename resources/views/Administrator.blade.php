@@ -61,10 +61,18 @@
             for(var i = 0;i<button.length;i++){
                 button[i].disabled = true
     }
-             @foreach($korisnici as $korisnik)
+            for(var k = 0;k<=i;k++){
+        if (i == 0){
 
-        $('#forma').attr('action',"{{ url('azuriraj/' . $korisnik->id) }}");
-        @endforeach
+            $('#forma').attr('action',"{{ url('azuriraj/'.$korisnik->first()->id) }}");
+            break;
+
+        }
+        else{
+$('#forma').attr('action',"{{ url('azuriraj/'.$korisnik->skip(1)->first()->id) }}");
+break;
+}
+}
         }
      
 
