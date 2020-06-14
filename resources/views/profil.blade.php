@@ -28,7 +28,7 @@ font-family:  'Varela Round';  }
 
 	var i = 0,nizDatum = [],nizVrijeme = [],nizUsluge = [],nizID = [];
 	 @foreach($termini as $termin)
-	  	$("#tablica").append("<tr><td>" + @json($termin->Datum) + "</td>" + "<td>" + @json($termin->vrijeme) + "</td>" + "<td>" + @json($termin->usluga) + "</td><td><a id = delete" + i + "><button>Delete</button></a> 	</td><td><button clicked = true class = update onclick = forma(" + i + ")" + ">Update</button></td></tr>");
+	  	$("#tablica").append("<tr><td>" + @json($termin->Datum) + "</td>" + "<td>" + @json($termin->vrijeme) + "</td>" + "<td>" + @json($termin->usluga) + "</td><td><a id = delete" + i + "><button>Delete</button></a> 	</td><td><button clicked = true class = update onclick = forma("  + @json($termin->id)  + "," + i +  ")" + ">Update</button></td></tr>");
 	  	$("#delete" + i).attr("href","{{ url('delete/' . $termin->id) }}");
 
 	 
@@ -42,9 +42,9 @@ font-family:  'Varela Round';  }
 	  @endforeach
 
 
-	 function forma(i){
-	 	
-	 			console.log("AAA");
+	 function forma(id,i){
+
+
 	 		
 	 const button = document.getElementsByClassName('update');
 	 $("form").append("<label for='datum'>Datum:</label><br>" + "<input id='datum' name='datum' ><br>" + "<label for='vrijeme'>Vrijeme:</label><br>"
@@ -58,19 +58,12 @@ font-family:  'Varela Round';  }
 			for(var j = 0;j<button.length;j++){
 				button[j].disabled = true
 	}
-	
-	for(var k = 0;k<=i;k++){
-		if (i == 0){
+	 @foreach($termini as $termin)
+	 	if(id == @json($termin->id)){
+	 		$("form").attr("action","{{ url('update/' . $termin->id) }}");
+	 	}
+	 @endforeach
 
-			$('#form').attr('action',"{{ url('update/'.$termin->first()->id) }}");
-			break;
-
-		}
-		else{
-$('#form').attr('action',"{{ url('update/'.$termin->skip(1)->first()->id) }}");
-break;
-}
-}
 }
 	  	
 	  	

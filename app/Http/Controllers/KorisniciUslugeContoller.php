@@ -11,7 +11,7 @@ class KorisniciUslugeContoller extends Controller
 {
   public function index(){
          $termini = Korisniciusluge::all();
-        return view('rezervacije')->with('termini', $termini);
+        return view('rezervacije')->with('termin', $termini);
 
 }
     
@@ -84,7 +84,7 @@ class KorisniciUslugeContoller extends Controller
      */
     public function update(Request $request,$id)
     {
- json_encode("AA");
+
         DB::table('korisnici_usluges')->where('id', $id)->update([
                 'Datum'=>$request->datum,
                 'vrijeme'=>$request->vrijeme,
@@ -112,6 +112,10 @@ class KorisniciUslugeContoller extends Controller
 
          Korisniciusluge::where('id', $id)->delete();
         return redirect('profil');
+    }
+    public function fetch($i){
+        $id = Korisniciusluge::skip($i)->first();
+        return response()->json($id);
     }
 }
 

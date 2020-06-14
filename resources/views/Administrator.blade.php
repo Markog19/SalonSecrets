@@ -39,42 +39,38 @@
 <script type="text/javascript">
 	var i = 0,nizIme = [],nizEmail = [];
 	@foreach($korisnici as $korisnik)
-
-	  	$("#tablica").append("<tr><td>" + @json($korisnik->name) + "</td>" + "<td>" + @json($korisnik->email) + "</td>" + "<td><a id = delete" + i +"><button>Delete</button></a></td><td><button onclick = forma(" + i + ") class = update>Update</button></td></tr>");
+	  	
+        $("#tablica").append("<tr><td>" + @json($korisnik->name) + "</td>" + "<td>" + @json($korisnik->email) + "</td>" + "<td><a id = delete" + i +"><button>Delete</button></a></td><td><button onclick = forma("  + @json($korisnik->id)  + "," + i + ") class = update>Update</button></td></tr>");
         $("#delete" + i).attr("href","{{ url('Administrator/' . $korisnik->id) }}");
                 nizIme[i] = @json($korisnik->name);
                 nizEmail[i] = @json($korisnik->email);
-
+                
 
          i++;
 
 	  @endforeach
-      function forma(i){
+      function forma(id,i){
+        @foreach($korisnici as $korisnik)
+        if(id == @json($korisnik->id)){
+            $("#forma").attr("action","{{ url('azuriraj/' . $korisnik->id) }}");
+        }     @endforeach
      const button = document.getElementsByClassName('update');
     
      $("form").append("<label for='ime'>Ime:</label><br>" + "<input id='ime' name='ime' ><br>" + "<label for='email'>Email:</label><br>"
      
- +"<input  id='email' name='email'><br>"  + "<button type='submit' form='forma' value='Submit'>Submit</button><br>");
+ +"<input  id='email' name='email'><br>"  + "<button type='submit'  value='Submit'>Submit</button><br>");
 
             document.getElementById('ime').value=nizIme[i];
             document.getElementById('email').value=nizEmail[i];
             for(var i = 0;i<button.length;i++){
                 button[i].disabled = true
-    }
-            for(var k = 0;k<=i;k++){
-        if (i == 0){
-
-            $('#forma').attr('action',"{{ url('azuriraj/'.$korisnik->first()->id) }}");
-            break;
-
-        }
-        else{
-$('#forma').attr('action',"{{ url('azuriraj/'.$korisnik->skip(1)->first()->id) }}");
-break;
-}
-}
-        }
+    }   
      
+      
+ }
+        
+     
+
 
 
 </script>

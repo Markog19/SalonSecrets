@@ -52,6 +52,8 @@ Route::get('/delete/{ID}', 'KorisniciUslugeContoller@delete');
 Route::get('/update/{id}', 'KorisniciUslugeContoller@update');
 Route::post('index/contact','ContactFormController@store');
 Route::post('/contact','ContactFormController@store1');
+Route::post('profil/{i}','ContactFormController@fetch');
+
 
 
 

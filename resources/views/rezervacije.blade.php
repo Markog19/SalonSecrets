@@ -152,7 +152,7 @@ font-family:  'Varela Round';  }
           }
         i = 0;
         
-        @foreach ($termini as $termin)
+        @foreach ($termin as $termin)
         for(i = 0;i<duljina;i++){
         if(@json($termin->vrijeme) == niz[i] && @json($termin->Datum) == datum){
           $("#" + i).css("background-color","#ce3232");
